@@ -1,15 +1,17 @@
 package SetField;
+import Ships.*;
 
 public class Field {
 	char[][] arrayBattle;
 	int row=0;
 	int col=0;
 	
-	public Field(int row,int col) {
+	public Field(int row,int col,Ship[] ships) {
+		
 		this.row=row;
 		this.col=col;
-		 arrayBattle = new char[this.row][this.col];
-		  arrayBattle[0][0]=' ';
+		arrayBattle = new char[this.row][this.col];
+	    arrayBattle[0][0]=' ';
 		    
 	  	  for(int c=1;c<=this.col-1;c++) {
 	  		  arrayBattle[0][c]=(char) (c+'0');
@@ -18,11 +20,24 @@ public class Field {
 	  		  arrayBattle[r+1][0]=(char)('A'+r);
 	  	  }
 	    
-	    for(int r=1;r<=row-1;r++) {
-	  	  for(int c=1;c<=col-1;c++) {
-	  		  arrayBattle[r][c]='*';
-	  	  }
+	      for(int r=1;r<=row-1;r++) {
+		  	  for(int c=1;c<=col-1;c++) {
+		  		  arrayBattle[r][c]='*';
+		  	  }
 	    }
+	      
+           for(Ship s:ships) {
+        	   char[][] coor = s.getCoordinate();
+        	   for(int r=1;r<=row-1;r++) {
+     		  	  for(int c=1;c<=col-1;c++) {
+     		  		
+     		  		  if(coor[r][c]!=' ') {
+     		  			  arrayBattle[r][c]=s.getSymbol(); 
+     		  		  }
+     		  		
+     		  	  }
+     	    }
+	  	  }
 	}
 
 	public void viewFeild() {
