@@ -1,5 +1,4 @@
 package BattleField;
-import java.util.Scanner;
 import SetField.Field;
 import Ships.BattleShip;
 import Ships.Carrier;
@@ -12,9 +11,9 @@ public class main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int rows=11;
+	   	int rows=11;
 		int cols =10;
-		char[][] coordinates= new char[11][11];
+		char[][] coordinates= new char[11][10];
 		Ship[] ships = new Ship[1];
 		
 		Carrier carrier = new Carrier("Barrier",100,5,100,coordinates,'#');
@@ -24,37 +23,14 @@ public class main {
 		Destroyer destroyer = new Destroyer("Destroyer",100,2,40,coordinates,'o');
 		
 		ships[0]=carrier;
-		ships[1]=battleship;
-		ships[2]=cruiser;
-		ships[3]=submarine;
-		ships[4]=destroyer;
-		
-		Scanner sc = new Scanner(System.in);
-		for(Ship ship:ships) {
-			System.out.println("Please enter the coordinates for "+ship.getName());
-			char[][] co= new char[11][11];
-			for(int r=1;r<=rows-1;r++) {
-	   		  	  for(int c=1;c<=cols-1;c++) {
-	   		  			  co[r][c]=' '; 
-	   		  	  } 
-	   		  		
-	   		  	  }
-			for(int i=0;i<ship.getSize();i++) {
-				 System.out.println("Enter row letter for part " + (i + 1) + " (A-J): ");
-			    char rowChar = sc.next().charAt(0);
-				int r =  rowChar - 'A';
-				System.out.println("Enter column number for part " + (i + 1) + " (1-9): ");
-				int c= sc.nextInt();
-				co[r+1][c]= ship.getSymbol(); 
-			}
-			ship.setCoordinate(co);
-		}
-		
-				
-				Field field = new Field(rows,cols,ships);
-			      field.viewFeild();
-			sc.close();
-      
+		//ships[1]=battleship;
+		//ships[2]=cruiser;
+		//ships[3]=submarine;
+		//ships[4]=destroyer;
+	
+		Field field = new Field(rows,cols,ships);
+	    field.viewFeild();
+  
       }
      
 	}

@@ -22,6 +22,7 @@ public abstract class Ship {
 		this.Coordinate = coordinates;
 		this.symbol=symbol;
 	}
+	 
 	public String getName() {
 		return name;
 	}
@@ -60,6 +61,9 @@ public abstract class Ship {
 	}
 	public void setCoordinate(char[][] Coordinate) {
 		this.Coordinate = Coordinate;
+	}
+	public void setCoordinateSymbol(int row,int col,char symbol) {
+		this.Coordinate[row][col] = symbol;
 	}
 	
 }
