@@ -14,7 +14,7 @@ public class main {
 	   	int rows=11;
 		int cols =10;
 		char[][] coordinates= new char[11][10];
-		Ship[] ships = new Ship[1];
+		Ship[] ships = new Ship[5];
 		
 		Carrier carrier = new Carrier("Barrier",100,5,100,coordinates,'#');
 		BattleShip battleship = new BattleShip("Battleship",100,4,80,coordinates,'@');
@@ -23,10 +23,10 @@ public class main {
 		Destroyer destroyer = new Destroyer("Destroyer",100,2,40,coordinates,'o');
 		
 		ships[0]=carrier;
-		//ships[1]=battleship;
-		//ships[2]=cruiser;
-		//ships[3]=submarine;
-		//ships[4]=destroyer;
+		ships[1]=battleship;
+		ships[2]=cruiser;
+		ships[3]=submarine;
+		ships[4]=destroyer;
 	
 		Field field = new Field(rows,cols,ships);
 	    field.viewFeild();

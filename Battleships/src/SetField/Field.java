@@ -17,9 +17,17 @@ public class Field {
 		this.arrayBattle = new char[this.row][this.col];
 	    this.arrayBattle[0][0]=' ';
 	    
-	    askUserCoOrdinates(ships,this.row,this.col);
-	 //   ComputerSetCoOrdinates(ships,this.row,this.col);
-		
+	    Scanner sc = new Scanner(System.in);
+	    System.out.println("Enter 1 to set Cordinates");
+	    System.out.println("Enter 2 to guess");
+	    if(sc.nextInt()==1) {
+	    	 askUserCoOrdinates(ships,this.row,this.col);
+	    }else {
+	    	ComputerSetCoOrdinates(ships,this.row,this.col);
+	    }
+	   
+	   
+		sc.close();
 	  	  for(int c=1;c<=this.col-1;c++) {
 	  		  this.arrayBattle[0][c]=(char) (c+'0');
 	  	  }
@@ -85,17 +93,36 @@ public class Field {
 	}
    
 	public void ComputerSetCoOrdinates(Ship[] ships,int row,int col) {
-		if(arrayBattle[row][col]== ' ') {
-				 random(row,col,1,9);
-	     }else{
-	    	 arrayBattle[row][col]= ships[1].getSymbol();
-	     }
+		 // Computer sets the  Co-Ordinates
+		for(Ship ship: ships){
+				char[][] co= new char[11][11];
+				for(int r=1;r<=row-1;r++) {
+		   		  	  for(int c=1;c<=col-1;c++) {
+		   		  			  co[r][c]=' '; 
+		   		  	  } 
+		   		  		
+		   		  	  }
+				for(int i=0;i<ship.getSize();i++) {
+					int a=0;
+					int b=0;
+	                do {
+	                    int[] coords = random(row, col);
+	                    a = coords[0];
+	                    b = coords[1];
+	                } while (co[a][b] != ' ');
+	                co[a][b] = ship.getSymbol();
+				}
+				ship.setCoordinate(co);
+			
+		}
+		
+		
 	}
 	
-	public void random(int row,int col,int min, int max) {
-		 row = rand.nextInt(max - min + 1) + min;
-	     col = rand.nextInt(max - min + 1) + min;
-	
+	public int[] random(int row,int col) {
+		int r = rand.nextInt(row);
+	    int c = rand.nextInt(col);
+	    return new int[]{r, c};
 	}
     
     
